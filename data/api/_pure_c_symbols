@@ -129,6 +129,11 @@ PyList_Size
 PyLong_FromVoidPtr
 PyLong_AsVoidPtr
 
+# Objects/memoryobject.c
+PyMemoryView_FromBuffer
+PyMemoryView_FromObject
+PyMemoryView_GetContiguous
+
 # Objects/methodobject.c
 PyCFunction_Call
 PyCFunction_GetFlags
@@ -225,6 +230,9 @@ PyArg_VaParseTupleAndKeywords
 _PyArg_VaParseTupleAndKeywords_SizeT
 PyArg_UnpackTuple
 _PyArg_NoKeywords
+
+# Python/getversion.c
+Py_GetVersion
 
 # Python/moduspport.c
 _Py_VaBuildValue_SizeT

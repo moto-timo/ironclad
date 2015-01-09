@@ -86,6 +86,26 @@ namespace Ironclad
             }
         }
         
+        public override IntPtr PyInt_FromString(string arg0, IntPtr arg1, int arg2)
+        {
+            if (arg1 != IntPtr.Zero)
+            {
+                Console.WriteLine("Error: pend argument of PyInt_FromString is not yet implemented");
+                throw new NotImplementedException("PyInt_FromString");
+            }
+            try
+            {
+                var val = LiteralParser.ParseIntegerSign(arg0, arg2);
+                return this.Store(val);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception in PyInt_FromString: {0}", e);
+                return IntPtr.Zero;
+            }
+
+        }
+
         public override int
         _PyLong_Sign(IntPtr valuePtr)
         {

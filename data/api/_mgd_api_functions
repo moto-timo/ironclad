@@ -44,6 +44,7 @@ PyDict_Values
 PyDictProxy_New    
     
 PyErr_Print    
+PyErr_WarnEx
     
 PyEval_GetBuiltins   
 PyEval_InitThreads    
@@ -67,6 +68,7 @@ PyInt_AsUnsignedLongMask
 PyInt_FromLong              
 PyInt_FromSize_t              
 PyInt_FromSsize_t        
+PyInt_FromString
     
 PyIter_Next              
     
@@ -148,6 +150,7 @@ PyObject_SetAttrString
 PyObject_SetItem  
 PyObject_Size
 PyObject_Str
+PyObject_Unicode
     
 PyRun_StringFlags
     
@@ -189,3 +192,6 @@ PyType_GenericAlloc
 PyType_GenericNew
 PyType_IsSubtype
 PyType_Ready
+
+PyUnicodeUCS2_DecodeUTF8
+

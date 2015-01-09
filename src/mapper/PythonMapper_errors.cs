@@ -35,6 +35,14 @@ namespace Ironclad
             this.LastException = null;
         }
 
+        public override int
+        PyErr_WarnEx(IntPtr arg0, string arg1, int arg2)
+        {
+            // int PyErr_WarnEx(PyObject *category, char *message, int stacklevel)¶
+            this.PrintToStdErr(arg1);
+            return 0;
+        }
+
         private IntPtr
         StoreTyped(PythonExceptions.BaseException exc)
         {

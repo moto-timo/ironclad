@@ -163,7 +163,7 @@ typedef Py_ssize_t (*charbufferproc)(PyObject *, Py_ssize_t, char **);
 
 typedef struct bufferinfo {
 	void *buf;
-	PyObject *obj;        /* borrowed reference */
+    PyObject *obj;        /* owned reference */
         Py_ssize_t len;
         Py_ssize_t itemsize;  /* This is Py_ssize_t so it can be
                                  pointed to by strides in simple case.*/
@@ -173,6 +173,8 @@ typedef struct bufferinfo {
         Py_ssize_t *shape;
         Py_ssize_t *strides;
         Py_ssize_t *suboffsets;
+    Py_ssize_t smalltable[2];  /* static store for shape and strides of
+                                  mono-dimensional buffers. */
         void *internal;
 } Py_buffer;
 
@@ -756,11 +758,13 @@ PyAPI_FUNC(void) _Py_AddToAllObjects(PyObject *, int force);
 	((PyObject*)(op))->ob_refcnt++)
 
 #define Py_DECREF(op)					\
+    do {                                                \
 	if (_Py_DEC_REFTOTAL  _Py_REF_DEBUG_COMMA	\
 	    --((PyObject*)(op))->ob_refcnt != 0)		\
 		_Py_CHECK_REFCNT(op)			\
 	else						\
-		_Py_Dealloc((PyObject *)(op))
+        _Py_Dealloc((PyObject *)(op));                  \
+    } while (0)
 
 /* Safely decref `op` and set `op` to NULL, especially useful in tp_clear
  * and tp_dealloc implementatons.
@@ -806,8 +810,8 @@ PyAPI_FUNC(void) _Py_AddToAllObjects(PyObject *, int force);
         } while (0)
 
 /* Macros to use in case the object pointer may be NULL: */
-#define Py_XINCREF(op) if ((op) == NULL) ; else Py_INCREF(op)
-#define Py_XDECREF(op) if ((op) == NULL) ; else Py_DECREF(op)
+#define Py_XINCREF(op) do { if ((op) == NULL) ; else Py_INCREF(op); } while (0)
+#define Py_XDECREF(op) do { if ((op) == NULL) ; else Py_DECREF(op); } while (0)
 
 /*
 These are provided as conveniences to Python runtime embedders, so that
@@ -958,6 +962,8 @@ chain of N deallocations is broken into N / PyTrash_UNWIND_LEVEL pieces,
 with the call stack never exceeding a depth of PyTrash_UNWIND_LEVEL.
 */
 
+/* This is the old private API, invoked by the macros before 2.7.4.
+   Kept for binary compatibility of extensions. */
 PyAPI_FUNC(void) _PyTrash_deposit_object(PyObject*);
 PyAPI_FUNC(void) _PyTrash_destroy_chain(void);
 PyAPI_DATA(int) _PyTrash_delete_nesting;
@@ -968,7 +974,7 @@ PyAPI_DATA(PyObject *) _PyTrash_delete_later;
 #define Py_TRASHCAN_SAFE_BEGIN(op) \
 	if (_PyTrash_delete_nesting < PyTrash_UNWIND_LEVEL) { \
 		++_PyTrash_delete_nesting;
-		/* The body of the deallocator is here. */
+            /* The body of the deallocator is here. */
 #define Py_TRASHCAN_SAFE_END(op) \
 		--_PyTrash_delete_nesting; \
 		if (_PyTrash_delete_later && _PyTrash_delete_nesting <= 0) \

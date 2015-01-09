@@ -28,5 +28,6 @@ PyFunctionObject
 PyMethodObject
 PyClassObject
 PyInstanceObject
+PyUnicodeObject
 
 _Py_HashSecret_t
