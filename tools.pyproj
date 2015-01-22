@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3dd1c47a-d5be-4623-85af-2f4d31fa140d}</ProjectGuid>
+    <ProjectHome>tools\</ProjectHome>
+    <StartupFile>generateapiplumbing.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>{80659ab7-4d53-4e0c-8588-a766116cbd46}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="generateapiplumbing.py" />
+    <Compile Include="generatecodesnippets.py" />
+    <Compile Include="generateexports.py" />
+    <Compile Include="generatemapper.py" />
+    <Compile Include="generatestub.py" />
+    <Compile Include="utils\apiplumbinggen.py" />
+    <Compile Include="utils\codegen.py" />
+    <Compile Include="utils\codesnippetsgen.py" />
+    <Compile Include="utils\delegatesgen.py" />
+    <Compile Include="utils\dispatchergen.py" />
+    <Compile Include="utils\dllreader.py" />
+    <Compile Include="utils\funcspec.py" />
+    <Compile Include="utils\gccxml.py" />
+    <Compile Include="utils\ictypes.py" />
+    <Compile Include="utils\io.py" />
+    <Compile Include="utils\magicmethodsgen.py" />
+    <Compile Include="utils\mappergen.py" />
+    <Compile Include="utils\platform.py" />
+    <Compile Include="utils\pythonapigen.py" />
+    <Compile Include="utils\pythonstructsgen.py" />
+    <Compile Include="utils\stubgen.py" />
+    <Compile Include="utils\subprocess.py" />
+    <Compile Include="utils\__init__.py" />
+    <Compile Include="__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="utils" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{80659ab7-4d53-4e0c-8588-a766116cbd46}\2.7" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

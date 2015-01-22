@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{552f36ec-0e03-42a6-ab4f-5e95f6c3773e}</ProjectGuid>
+    <ProjectHome>tests\</ProjectHome>
+    <StartupFile>baseobjecttest.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>{80659ab7-4d53-4e0c-8588-a766116cbd46}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="baseobjecttest.py" />
+    <Compile Include="bugtest.py" />
+    <Compile Include="cpymarshaltest.py" />
+    <Compile Include="dicttest.py" />
+    <Compile Include="dllreadertest.py" />
+    <Compile Include="errorstest.py" />
+    <Compile Include="exectest.py" />
+    <Compile Include="extra\h5pytests.py" />
+    <Compile Include="extra\numpytests.py" />
+    <Compile Include="extra\scipytests.py" />
+    <Compile Include="filetest.py" />
+    <Compile Include="functionalitytest.py" />
+    <Compile Include="functiontest.py" />
+    <Compile Include="generatecodesnippetstest.py" />
+    <Compile Include="generatemappertest.py" />
+    <Compile Include="generatestubtest.py" />
+    <Compile Include="hglobalallocatortest.py" />
+    <Compile Include="interestingptrmaptest.py" />
+    <Compile Include="itertest.py" />
+    <Compile Include="listtest.py" />
+    <Compile Include="locktest.py" />
+    <Compile Include="mappingtest.py" />
+    <Compile Include="memorytest.py" />
+    <Compile Include="methodtest.py" />
+    <Compile Include="moduletest.py" />
+    <Compile Include="numbermakertest.py" />
+    <Compile Include="numberstest.py" />
+    <Compile Include="pydimportertest.py" />
+    <Compile Include="pythonapitest.py" />
+    <Compile Include="pythonmapper_core_test.py" />
+    <Compile Include="retrievetypetest.py" />
+    <Compile Include="sequencetest.py" />
+    <Compile Include="slicetest.py" />
+    <Compile Include="stringtest.py" />
+    <Compile Include="stubreferencetest.py" />
+    <Compile Include="stubtest.py" />
+    <Compile Include="threadtest.py" />
+    <Compile Include="tupletest.py" />
+    <Compile Include="typestest.py" />
+    <Compile Include="utils\allocators.py" />
+    <Compile Include="utils\blacklists.py" />
+    <Compile Include="utils\cpython.py" />
+    <Compile Include="utils\dispatcherhelpers.py" />
+    <Compile Include="utils\functionaltestcase.py" />
+    <Compile Include="utils\gc.py" />
+    <Compile Include="utils\loadassemblies.py" />
+    <Compile Include="utils\memory.py" />
+    <Compile Include="utils\numbers.py" />
+    <Compile Include="utils\process.py" />
+    <Compile Include="utils\pythonmapper.py" />
+    <Compile Include="utils\runtest.py" />
+    <Compile Include="utils\schnoz.py" />
+    <Compile Include="utils\testcase.py" />
+    <Compile Include="utils\typetestcase.py" />
+    <Compile Include="utils\__init__.py" />
+    <Compile Include="__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\python27-pexports" />
+    <Content Include="data\test-interlaced.gif" />
+    <Content Include="data\test.bmp" />
+    <Content Include="data\test.gif" />
+    <Content Include="data\test.jpg" />
+    <Content Include="data\test.png" />
+    <Content Include="data\text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data" />
+    <Folder Include="extra" />
+    <Folder Include="utils" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{80659ab7-4d53-4e0c-8588-a766116cbd46}\2.7" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
